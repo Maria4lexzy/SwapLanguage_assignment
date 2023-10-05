@@ -24,24 +24,18 @@
         <img
           src="/featuredSection/featured-section-hub.svg"
           alt="Big Image"
-          class="w-[589px] h-[436px] img1-fade-in"
+          class="w-[589px] h-[436px] img-1"
         />
         <img
           src="/featuredSection/featured-section-learning-overview.svg"
           alt="Image 2"
-          class="w-[283px] h-[151px] absolute top-[11px] left-[362px]"
+          class="img-2 w-[283px] h-[151px] absolute top-[11px] left-[362px]"
         />
         <img
           src="/featuredSection/featured-section-video-maximised.svg"
           alt="Image 3"
-          class="img-3 w-[283px] h-[151px] absolute top-[3px] left-[321px]"
+          class="vid-img img-3 w-[283px] h-[151px] absolute top-[3px] left-[321px]"
         />
-        <!-- <img
-          src="/featuredSection/featured-section-learning-overview.svg"
-          alt="Image 4"
-          class="img-4 w-[283px] h-[151px] absolute top-[11px] left-[362px]"
-        />
-      </div> -->
       </div>
     </div>
   </div>
@@ -56,12 +50,35 @@
     transform: translateY(0);
     opacity: 1;
   }
-  .img1-fade-in {
+  /* Big image fade in */
+  .img-1 {
     opacity: 0;
     transition: opacity 0.5s;
   }
 
-  .img1-fade-in.show {
+  .img-1.fade-in {
     opacity: 1;
+  }
+
+  /* video image translate */
+
+  .vid-img {
+    transition: 0.8s ease;
+    transform: translateX(0) translateY(0) scale(0.8);
+  }
+  .vid-img.translate {
+    transform: translateX(-420px) translateY(310px) scale(1.1);
+  }
+
+  /*learning image slide in  */
+
+  .img-2 {
+    opacity: 0;
+    transition: 0.8s ease;
+    transform: translateX(100%);
+  }
+  .img-2.slide-in {
+    opacity: 1;
+    transform: translateX(0);
   }
 </style>

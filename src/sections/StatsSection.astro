@@ -16,7 +16,7 @@ import PercentageBlock from "../components/PercentageBlock.astro";
     </div>
   </div>
 
-  <div class="grid grid-cols-4 p-[60px] gap-[60px]">
+  <div class="grid grid-cols-4 p-[60px] gap-[60px]" id="blocks">
     <PercentageBlock
       text="of our users believe that speaking Danish helps them connect with Danish colleagues."
       textColor="text-emerald-500"
@@ -42,12 +42,35 @@ import PercentageBlock from "../components/PercentageBlock.astro";
 <script>
   import "/libraries/jquery-3.7.1.min.js?url";
   import "/libraries/numberAnimate.js?url";
-
-  let percentageBlocks = $(".percentage-anim");
-  let blocksNumbers = [93, 52, 60, 60];
-
-  percentageBlocks.each(function (index, block) {
-    $(block).numberAnimate({ animationTimes: [500, 1500, 1000] });
-    $(block).numberAnimate("set", blocksNumbers[index]);
+  document.addEventListener("DOMContentLoaded", (e) => {
+    intersectionObserverHandler();
   });
+  const percentageBlocks = $(".percentage-anim");
+  const blocksNumbers = [93, 52, 60, 60];
+
+  const intersectionObserverHandler = () => {
+    const blocks = document.getElementById("blocks");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            let index = 0;
+            percentageBlocks.each(function (value, block) {
+              $(block).numberAnimate({ animationTimes: [1000, 2000, 1000] });
+              $(block).numberAnimate("set", blocksNumbers[index]);
+              index++;
+            });
+          } else {
+            percentageBlocks.each(function (index, block) {
+              $(block).html("");
+            });
+          }
+        });
+      },
+      {
+        threshold: 0,
+      }
+    );
+    observer.observe(blocks);
+  };
 </script>
