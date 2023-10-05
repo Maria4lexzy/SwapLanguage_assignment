@@ -1,0 +1,53 @@
+---
+import PercentageBlock from "../components/PercentageBlock.astro";
+---
+
+<div class="grid grid-cols-1 px-[75px] pt-[60px] pb-[70px]">
+  <div class="flex flex-col justify-center text-center">
+    <div
+      class="uppercase text-orange-500 font-helvetica text-center text-xs font-bold leading-tight">
+      <p>why choosing swap language</p>
+    </div>
+    <div
+      class="text-center text-slate-700 text-3xl font-bold font-['Montserrat'] leading-9 w-1/2 mx-auto">
+      <h2 class="">
+        We help businesses attract and retain international talent.
+      </h2>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-4 p-[60px] gap-[60px]">
+    <PercentageBlock
+      text="of our users believe that speaking Danish helps them connect with Danish colleagues."
+      textColor="text-emerald-500"
+      id="c1"
+    />
+    <PercentageBlock
+      text="of our users use Danish every day after 6 months."
+      textColor="text-blue-500"
+      id="c2"
+    />
+    <PercentageBlock
+      text="of international employees rate language training as their number one priority."
+      textColor="text-yellow-500"
+      id="c3"
+    />
+    <PercentageBlock
+      text="of our users feel confident speaking Danish after 6 months."
+      textColor="text-purple-500"
+      id="c4"
+    />
+  </div>
+</div>
+<script>
+  import "/libraries/jquery-3.7.1.min.js?url";
+  import "/libraries/numberAnimate.js?url";
+
+  let percentageBlocks = $(".percentage-anim");
+  let blocksNumbers = [93, 52, 60, 60];
+
+  percentageBlocks.each(function (index, block) {
+    $(block).numberAnimate({ animationTimes: [500, 1500, 1000] });
+    $(block).numberAnimate("set", blocksNumbers[index]);
+  });
+</script>

@@ -1,0 +1,12 @@
+---
+
+const { imgUrl, imgAlt } = Astro.props;
+
+---
+<span class="relative z-10 flex h-16 w-16">
+<span class="animate-[ping_2s_ease-in-out_infinite] absolute inline-flex h-10 w-10 top-[12px] left-[12px] rounded-full bg-gray-400 opacity-95"></span>
+<img
+src={imgUrl}
+alt={imgAlt}
+class="w-16 h-16 z-20"
+/>
