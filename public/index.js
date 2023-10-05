@@ -1,57 +1,50 @@
 document.addEventListener('DOMContentLoaded', (e) => {
     intersectionObserverHandler();
 
-
 });
 
 const intersectionObserverHandler = () => {
-    const textSlideUp1 = document.querySelectorAll('.text-slide-up');
-    const textSlideUp = document.querySelector('.text-slide-up');
-    const image1FadeIn = document.querySelector('.img-1');
-    const vidImageTranslate = document.querySelector('.vid-img');
-    const img2SlideIn = document.querySelector('.img-2');
+    const container = document.querySelector('.custom-container');
+
+    const elementsToAnimate = [
+        {
+            selector: '.text1',
+            animationClass: 'slide-up',
+        },
+        {
+            selector: '.img-1',
+            animationClass: 'fade-in',
+        },
+        {
+            selector: '.vid-img',
+            animationClass: 'translate',
+        },
+        {
+            selector: '.img-2',
+            animationClass: 'slide-in',
+        },
+    ];
+
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    textSlideUp.classList.add('show');
-                    image1FadeIn.classList.add('fade-in');
+                elementsToAnimate.forEach((element) => {
+                    const { selector, animationClass } = element;
+                    const targetElement = document.querySelector(selector);
 
-                    img2SlideIn.classList.add('slide-in');
-                    vidImageTranslate.classList.add('translate');
-                    // setTimeout(() => {
-
-                    // }, 500); 
-                }
-
-
-
-
-                else {
-                    textSlideUp.classList.remove('show');
-                    image1FadeIn.classList.remove('fade-in');
-                    vidImageTranslate.classList.remove('translate');
-                    img2SlideIn.classList.remove('slide-in');
-
-
-
-                }
+                    if (entry.isIntersecting) {
+                        targetElement.classList.add(animationClass);
+                    } else {
+                        targetElement.classList.remove(animationClass);
+                    }
+                });
             });
-        },
-        {
-            threshold: 0,
+        }, { threshold: [0] });
 
-        }
-    );
-
-    // textSlideUp.forEach((card) => {
-    //     observer.observe(card);
-    // });
-
-    observer.observe(textSlideUp);
-    observer.observe(image1FadeIn);
-    observer.observe(vidImageTranslate);
-    observer.observe(img2SlideIn);
+    elementsToAnimate.forEach((element) => {
+        observer.observe(document.querySelector(element.selector));
+    });
 }
+
 
 
